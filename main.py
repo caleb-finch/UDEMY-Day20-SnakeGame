@@ -8,7 +8,6 @@ screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("My Snake Game")
 screen.tracer(n=0)
-snake_body_list = []
 
 snake = Snake()
 
