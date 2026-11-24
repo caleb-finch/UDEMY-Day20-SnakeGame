@@ -1,5 +1,5 @@
 from turtle import Turtle
-STARTING_POSITIONS = [(0,0), (-20,0), (-40,0)]
+STARTING_POSITIONS = [(0,0), (-20,0), (-40,0)]# (-60,0), (-80,0), (-100,0), (-120,0), (-140,0), (-160,0)]
 MOVE_DISTANCE = 20
 RIGHT = 0
 UP = 90
@@ -14,20 +14,30 @@ class Snake():
 
     def create_snake(self):
         for position in STARTING_POSITIONS:
-            turtle = Turtle(shape = "square")
-            turtle.color("white")
-            turtle.penup()
-            turtle.goto(position)
-            self.snake_body.append(turtle)
+            self.add_snake_body(position)
+            
 
-    def add_snake_body(self):
+#add a new segment to the snake
+    def add_snake_body(self,position):
         turtle = Turtle(shape = "square")
         turtle.color("white")
         turtle.penup()
-        new_snake_x = self.snake_body[-1].xcor() + 20
-        new_snake_y = self.snake_body[-1].ycor() + 20
+        turtle.goto(position)
+        self.snake_body.append(turtle)
+
+    def extend(self):
+        self.add_snake_body(self.snake_body[-1].position())
+
+#my try at it
+        # turtle = Turtle(shape = "square")
+        # turtle.hideturtle()
+        # turtle.color("yellow")
+        # turtle.penup()
+        # self.snake_body.append(turtle)
     
     def move(self):
+        for turtle in self.snake_body:
+            turtle.showturtle()
         for segment_num in range(len(self.snake_body) - 1,0,-1):
             new_x = self.snake_body[segment_num - 1].xcor()
             new_y = self.snake_body[segment_num - 1].ycor()
